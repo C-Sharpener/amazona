@@ -19,12 +19,12 @@ export default function ShippingAddressScreen() {
   const [postalCode, setPostalCode] = useState(
     shippingAddress.postalCode || ''
   );
-  const [country, setCountry] = useState(shippingAddress.country || '');
   useEffect(() => {
     if (!userInfo) {
       navigate('/signin?redirect=/shipping');
     }
   }, [userInfo, navigate]);
+  const [country, setCountry] = useState(shippingAddress.country || '');
   const submitHandler = (e) => {
     e.preventDefault();
     ctxDispatch({
@@ -54,6 +54,7 @@ export default function ShippingAddressScreen() {
       <Helmet>
         <title>Shipping Address</title>
       </Helmet>
+
       <CheckoutSteps step1 step2></CheckoutSteps>
       <div className="container small-container">
         <h1 className="my-3">Shipping Address</h1>
