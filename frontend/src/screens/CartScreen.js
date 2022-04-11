@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { Store } from '../Store';
 import { Helmet } from 'react-helmet-async';
-import Row from 'react-bootstrap/esm/Row';
-import Col from 'react-bootstrap/esm/Col';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import MessageBox from '../components/MessageBox';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
@@ -28,7 +28,6 @@ export default function CartScreen() {
       payload: { ...item, quantity },
     });
   };
-
   const removeItemHandler = (item) => {
     ctxDispatch({ type: 'CART_REMOVE_ITEM', payload: item });
   };
@@ -36,6 +35,7 @@ export default function CartScreen() {
   const checkoutHandler = () => {
     navigate('/signin?redirect=/shipping');
   };
+
   return (
     <div>
       <Helmet>
@@ -98,29 +98,31 @@ export default function CartScreen() {
           )}
         </Col>
         <Col md={4}>
-          <Card.Body>
-            <ListGroup variant="flush">
-              <ListGroup.Item>
-                <h3>
-                  Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
-                  items):$
-                  {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
-                </h3>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <div className="d-grid">
-                  <Button
-                    type="button"
-                    variant="primary"
-                    onClick={checkoutHandler}
-                    disabled={cartItems.length === 0}
-                  >
-                    Proceed to Checkout
-                  </Button>
-                </div>
-              </ListGroup.Item>
-            </ListGroup>
-          </Card.Body>
+          <Card>
+            <Card.Body>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <h3>
+                    Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
+                    items):$
+                    {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
+                  </h3>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <div className="d-grid">
+                    <Button
+                      type="button"
+                      variant="primary"
+                      onClick={checkoutHandler}
+                      disabled={cartItems.length === 0}
+                    >
+                      Proceed to Checkout
+                    </Button>
+                  </div>
+                </ListGroup.Item>
+              </ListGroup>
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
     </div>

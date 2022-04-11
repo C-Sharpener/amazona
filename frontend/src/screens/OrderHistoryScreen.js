@@ -47,12 +47,12 @@ export default function OrderHistoryScreen() {
     };
     fetchData();
   }, [userInfo]);
-
   return (
     <div>
       <Helmet>
         <title>Order History</title>
       </Helmet>
+
       <h1>Order History</h1>
       {loading ? (
         <LoadingBox></LoadingBox>

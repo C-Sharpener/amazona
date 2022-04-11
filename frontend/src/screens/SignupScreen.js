@@ -22,7 +22,6 @@ export default function SignupScreen() {
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
-
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -42,6 +41,7 @@ export default function SignupScreen() {
       toast.error(getError(err));
     }
   };
+
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);
@@ -59,6 +59,7 @@ export default function SignupScreen() {
           <Form.Label>Name</Form.Label>
           <Form.Control onChange={(e) => setName(e.target.value)} required />
         </Form.Group>
+
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control

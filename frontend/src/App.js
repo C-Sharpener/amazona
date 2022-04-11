@@ -40,22 +40,20 @@ function App() {
     localStorage.removeItem('paymentMethod');
     window.location.href = '/signin';
   };
-
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
-  const [categories, SetCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const { data } = await axios.get(`/api/products/categories`);
-        SetCategories(data);
+        setCategories(data);
       } catch (err) {
         toast.error(getError(err));
       }
     };
     fetchCategories();
   }, []);
-
   return (
     <BrowserRouter>
       <div
@@ -75,15 +73,16 @@ function App() {
               >
                 <i className="fas fa-bars"></i>
               </Button>
+
               <LinkContainer to="/">
-                <Navbar.Brand>Amazona</Navbar.Brand>
+                <Navbar.Brand>amazona</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <SearchBox />
                 <Nav className="me-auto w-100 justify-content-end">
                   <Link to="/cart" className="nav-link">
-                    Cart{' '}
+                    Cart
                     {cart.cartItems.length > 0 && (
                       <Badge pill bg="danger">
                         {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
@@ -113,11 +112,11 @@ function App() {
                     </Link>
                   )}
                   {userInfo && userInfo.isAdmin && (
-                    <NavDropdown title="Admin" id="admin-nav-dorpdown">
+                    <NavDropdown title="Admin" id="admin-nav-dropdown">
                       <LinkContainer to="/admin/dashboard">
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
                       </LinkContainer>
-                      <LinkContainer to="/admin/productList">
+                      <LinkContainer to="/admin/productlist">
                         <NavDropdown.Item>Products</NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/admin/orderlist">
@@ -180,7 +179,7 @@ function App() {
                     <OrderScreen />
                   </ProtectedRoute>
                 }
-              />
+              ></Route>
               <Route
                 path="/orderhistory"
                 element={
@@ -188,9 +187,12 @@ function App() {
                     <OrderHistoryScreen />
                   </ProtectedRoute>
                 }
-              />
-              <Route path="/shipping" element={<ShippingAddressScreen />} />
-              <Route path="/payment" element={<PaymentMethodScreen />} />
+              ></Route>
+              <Route
+                path="/shipping"
+                element={<ShippingAddressScreen />}
+              ></Route>
+              <Route path="/payment" element={<PaymentMethodScreen />}></Route>
               {/* Admin Routes */}
               <Route
                 path="/admin/dashboard"
@@ -200,6 +202,7 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
+
               <Route path="/" element={<HomeScreen />} />
             </Routes>
           </Container>

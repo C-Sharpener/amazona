@@ -1,16 +1,15 @@
-import axios from 'axios';
 import React, { useEffect, useReducer, useState } from 'react';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import { toast } from 'react-toastify';
+import { getError } from '../utils';
+import { Helmet } from 'react-helmet-async';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Rating from '../components/Rating';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import Rating from '../components/Rating';
-import { getError } from '../utils';
+import Button from 'react-bootstrap/Button';
 import Product from '../components/Product';
 import LinkContainer from 'react-router-bootstrap/LinkContainer';
 
@@ -29,6 +28,7 @@ const reducer = (state, action) => {
       };
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
+
     default:
       return state;
   }
@@ -54,14 +54,17 @@ export const ratings = [
     name: '4stars & up',
     rating: 4,
   },
+
   {
     name: '3stars & up',
     rating: 3,
   },
+
   {
     name: '2stars & up',
     rating: 2,
   },
+
   {
     name: '1stars & up',
     rating: 1,
@@ -124,7 +127,6 @@ export default function SearchScreen() {
     const sortOrder = filter.order || order;
     return `/search?category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}&page=${filterPage}`;
   };
-
   return (
     <div>
       <Helmet>
@@ -248,6 +250,7 @@ export default function SearchScreen() {
               {products.length === 0 && (
                 <MessageBox>No Product Found</MessageBox>
               )}
+
               <Row>
                 {products.map((product) => (
                   <Col sm={6} lg={4} className="mb-3" key={product._id}>
@@ -255,6 +258,7 @@ export default function SearchScreen() {
                   </Col>
                 ))}
               </Row>
+
               <div>
                 {[...Array(pages).keys()].map((x) => (
                   <LinkContainer

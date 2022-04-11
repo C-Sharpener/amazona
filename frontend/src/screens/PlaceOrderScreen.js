@@ -59,7 +59,6 @@ export default function PlaceOrderScreen() {
           taxPrice: cart.taxPrice,
           totalPrice: cart.totalPrice,
         },
-
         {
           headers: {
             authorization: `Bearer ${userInfo.token}`,
@@ -75,11 +74,13 @@ export default function PlaceOrderScreen() {
       toast.error(getError(err));
     }
   };
+
   useEffect(() => {
     if (!cart.paymentMethod) {
       navigate('/payment');
     }
   }, [cart, navigate]);
+
   return (
     <div>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
@@ -101,6 +102,7 @@ export default function PlaceOrderScreen() {
               <Link to="/shipping">Edit</Link>
             </Card.Body>
           </Card>
+
           <Card className="mb-3">
             <Card.Body>
               <Card.Title>Payment</Card.Title>
@@ -110,6 +112,7 @@ export default function PlaceOrderScreen() {
               <Link to="/payment">Edit</Link>
             </Card.Body>
           </Card>
+
           <Card className="mb-3">
             <Card.Body>
               <Card.Title>Items</Card.Title>

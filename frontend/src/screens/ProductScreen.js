@@ -31,6 +31,7 @@ function ProductScreen() {
   const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
+
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
     product: [],
     loading: true,
@@ -65,7 +66,6 @@ function ProductScreen() {
     });
     navigate('/cart');
   };
-
   return loading ? (
     <LoadingBox />
   ) : error ? (
@@ -96,7 +96,7 @@ function ProductScreen() {
             </ListGroup.Item>
             <ListGroup.Item>Price : ${product.price}</ListGroup.Item>
             <ListGroup.Item>
-              Description : <p>{product.description}</p>
+              Description :<p>{product.description}</p>
             </ListGroup.Item>
           </ListGroup>
         </Col>
@@ -122,6 +122,7 @@ function ProductScreen() {
                     </Col>
                   </Row>
                 </ListGroup.Item>
+
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">

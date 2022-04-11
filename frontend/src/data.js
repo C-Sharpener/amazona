@@ -4,7 +4,7 @@ const data = {
       name: 'Nike Slim Shirt',
       slug: 'nike-slim-shirt',
       category: 'Shirts',
-      image: '/images/p1.jpg',
+      image: '/images/p1.jpg', // 679px × 829px
       price: 120,
       countInStock: 10,
       brand: 'Nike',
@@ -43,7 +43,7 @@ const data = {
       image: '/images/p4.jpg',
       price: 65,
       countInStock: 5,
-      brand: 'Adidas',
+      brand: 'Puma',
       rating: 4.5,
       numReviews: 10,
       description: 'high quality product',
