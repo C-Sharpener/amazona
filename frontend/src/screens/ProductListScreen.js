@@ -33,6 +33,7 @@ const reducer = (state, action) => {
       };
     case 'CREATE_FAIL':
       return { ...state, loadingCreate: false };
+
     case 'DELETE_REQUEST':
       return { ...state, loadingDelete: true, successDelete: false };
     case 'DELETE_SUCCESS':
@@ -43,6 +44,7 @@ const reducer = (state, action) => {
       };
     case 'DELETE_FAIL':
       return { ...state, loadingDelete: false, successDelete: false };
+
     case 'DELETE_RESET':
       return { ...state, loadingDelete: false, successDelete: false };
     default:
@@ -132,6 +134,7 @@ export default function ProductListScreen() {
       }
     }
   };
+
   return (
     <div>
       <Row>
